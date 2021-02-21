@@ -1,0 +1,85 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "IBM Plex",sans-serif;
+}
+
+body{
+  background: #001141
+  ;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(64, 1fr);
+  grid-template-rows: repeat(32, 1fr);
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  grid-column: 2 / 30;
+  grid-row: 2 / 30;
+  border: 0.2px solid;
+  color: white;
+  padding: 8px;
+  margin: 8px;
+}
+
+.isblock{
+  background-color: #012792;
+  border:2px ;
+  color: pink;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.btn{
+  width: 1fr;
+  height: 64px;
+  background: none;
+  border: 2px solid;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 8px;
+  transition: .925s cubic-bezier(0.19, 0.9, 0.22, 1);
+}
+
+.btn:hover{
+    background-color: white;
+  color: #001141
+  ;
+}
+
+.btn::before,.btn::after{
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background: #001141;
+  transform: skewX(50deg);
+  transition: .925s cubic-bezier(0.19, 0.9, 0.22, 1);
+}
+
+.btn::before{
+  top: -2px;
+  left: 15%;
+}
+
+.btn::after{
+  bottom: -2px;
+  right: 15%;
+}
+
+.btn:hover::before{
+  width: 32px;
+  left: 75%;
+  background-color: white;
+}
+
+.btn:hover::after{
+  width: 32px;
+  right: 75%;
+  background-color: white;
+}
