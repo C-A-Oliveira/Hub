@@ -10,3 +10,45 @@ body {
 .img_me{
   border-radius: 50%;
 }
+
+
+.btn2 {height: 60px;
+  background: none;
+  border: 4px solid;
+  color: #001c2f;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+  margin: 8px;
+}
+
+.btn2::before,
+.btn2::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 4px;
+  background: var(--BACK_COLOUR);
+  transform: skewX(50deg);
+  transition: 0.525s cubic-bezier(0.19, 0.9, 0.22, 1);
+}
+
+.btn2::before {
+  top: -4px;
+  left: 10%;
+}
+
+.btn2::after {
+  bottom: -4px;
+  right: 10%;
+}
+
+.btn2:hover::before {
+  left: 80%;
+}
+
+.btn2:hover::after {
+  right: 80%;
+}
