@@ -1,0 +1,12 @@
+:root {
+  --BACK_COLOUR: #ffffff;
+}
+
+body {
+  background: var(--BACK_COLOUR);
+  font-family: "IBM Plex", sans-serif;  
+}
+
+.img_me{
+  border-radius: 50%;
+}

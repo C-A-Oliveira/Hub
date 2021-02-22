@@ -26,28 +26,6 @@ body {
   margin: 8px;
 }
 
-.SP {
-  color: #bb0083;
-}
-.TR {
-  color: #c2c200;
-}
-.AVI {
-  color: #008f7a;
-}
-.ACM {
-  color: #9354a1;
-}
-.NUC {
-  color: #8b4033;
-}
-.OIL\/HSE {
-  color: #5c0768;
-}
-.UTI {
-  color: #268caa;
-}
-
 .btn::before,
 .btn::after {
   content: "";
