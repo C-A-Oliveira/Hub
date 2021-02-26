@@ -17,7 +17,8 @@ curr_bkup = 0
 for dns in curr_hosts:
     if re.match(r"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?) ([a-z]*.)*", dns):
         host_list.append(dns.split())
-if ['127.100.10.1', 'jtt.webapp']  in host_list or ['127.100.20.1', 'port.webapp']  in host_list:
+        
+if ['127.100.10.1', 'jtt.webapp']  in host_list or ['127.100.20.1', 'stuff.webapp']  in host_list:
     print("> Hosts Located! Ready to start servers")
     exit()
 else:        
@@ -44,7 +45,7 @@ else:
     '''
     print("> Adding to host files")
     host_list.append(['127.100.10.1', 'jtt.webapp'])
-    host_list.append(['127.100.20.1', 'port.webapp'])
+    host_list.append(['127.100.20.1', 'stuff.webapp'])
 
     new_host = open(HOST_PATH+"hosts", 'w', encoding=curr_hosts.encoding)
     curr_hosts.close()
