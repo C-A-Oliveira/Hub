@@ -14,14 +14,15 @@
 
   <link rel="icon" href="../static/img/ico/favicon-inv.ico" type="image/x-icon">
 
-  <title>{% block title %}{% endblock %}</title>
+  <title>{% block title %}{% endblock %}The STUFF's</title>
 </head>
 
-<body></body>
-  <div id="progressbar"></div>
-  <div id="scrollpath"></div>
-
-  <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #808080;">
+<body>
+  <div class="banner-logo" style="background-color: #343a40; ">
+    <a href="/" class="logo nav-link " style="color: #ffffff; text-align: center;"><img
+        style="height: 120px; width:auto;" src="../static/img/logo-line-2x-2.png" alt=""></a>
+  </div>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #5f6469;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,18 +30,16 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link mr-2 ml-2 navbar-brand" id="home" href="/home" style="color: #ffffff;">The
           <b>STUFF</b>s</a>
-        <hr style=" border: none; border-left: 1px solid hsla(200, 10%, 50%,100); height: 10px; width: 1px;" />
         <a class="nav-item nav-link mr-2 ml-2" id="projects" href="/projects" style="color: #ffffff;">Projects</a>
-        <hr style=" border: none; border-left: 1px solid hsla(200, 10%, 50%,100); height: 10px; width: 1px;" />
+        <a class="nav-item nav-link mr-2 ml-2" id="sandbox" href="/sandbox" style="color: #ffffff;">Sandbox</a>
         <a class="nav-item nav-link mr-2 ml-2" id="about" href="/about" style="color: #ffffff;">Who Built this?</a>
-        <hr style=" border: none; border-left: 1px solid hsla(200, 10%, 50%,100); height: 10px; width: 1px;" />
         <a class="nav-item nav-link mr-2 ml-2" id="contact" href="/contact" style="color: #ffffff;">Contact the
           creator</a>
       </div>
     </div>
   </nav>
 
-  <div class="container shadow-lg p-5 mt-1">{% block content %} {% endblock %}</div>
+  <div class="container shadow-lg p-5">{% block content %} {% endblock %}</div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

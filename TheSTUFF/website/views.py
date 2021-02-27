@@ -20,12 +20,27 @@ def about():
 def contact():
     return render_template("contact.html")
 
+@views.route('/contact/professional')
+def pro_contact():
+    return render_template("pro-contact.html")
+
+@views.route('/contact/personal')
+def per_contact():
+    return render_template("per-contact.html")
+
 @views.route('/wip')
 def wip():
     return render_template("wip.html")
+@views.route('/test')
+def test():
+    return render_template("test.html")
 
 @views.route('/projects')
 def projects():
     return wip()
     #return render_template("projects.html")
+@views.route('/sandbox')
+def sandbox():
+    return wip()
+    #return render_template("sandbox.html")
 
