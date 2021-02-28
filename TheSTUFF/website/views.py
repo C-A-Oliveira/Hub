@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 import json
-
+from my_email.mail_stuff import send_it
 views = Blueprint('views', __name__)
 
 
@@ -20,12 +20,19 @@ def about():
 def contact():
     return render_template("contact.html")
 
-@views.route('/contact/professional')
+@views.route('/contact/professional', methods=["GET", "POST"])
 def pro_contact():
     return render_template("pro-contact.html")
 
-@views.route('/contact/personal')
+@views.route('/contact/personal', methods=["GET", "POST"])
 def per_contact():
+    if request.method == "POST":
+        name = request.form["name"]
+        email = request.form["email"]
+        subject = request.form["subject"]
+        message = request.form["message"]
+        print(f"> new e-mail request from {name} @ {email}")
+        send_it(name, email, subject)
     return render_template("per-contact.html")
 
 @views.route('/wip')

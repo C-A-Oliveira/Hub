@@ -2,27 +2,27 @@
 {% block content%}
 <h1 class="h-1 font-italic"><b class="font-weight-bold">PERSONAL</b> CONTACT</h1>
 <hr class="mb-4"/>
-<form>
+<form action="" method="POST">
   <div class="form-group row">
     <label for="inputName" class="col-sm-2 col-form-label">Full name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputName">
+      <input type="text" class="form-control" id="inputName" name="name">
     </div>
   </div>
   <div class="form-group row">
     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail">
+      <input type="email" class="form-control" id="inputEmail" name="email">
     </div>
   </div>
   <div class="form-group row">
     <label for="inputSubject" class="col-sm-2 col-form-label">What you want to speak about?</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputSubject">
+      <input type="text" class="form-control" id="inputSubject" name="subject">
     </div>
   </div>
   <div class="mb-3">
-    <textarea class="form-control" id="message" placeholder="Send a message if you wish :]"></textarea>
+    <textarea class="form-control" id="message" name="message" placeholder="Send a message if you wish :]"></textarea>
   </div>
   <div class="form-group row">
     <div class="col-sm-10">
