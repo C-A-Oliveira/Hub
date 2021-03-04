@@ -1,5 +1,147 @@
-{% extends "base.html" %} 
-{% block title %}Sandbox - {% endblock %} 
+{% extends "base.html" %}
+{% block moar_meta %}
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="../static/css/sand.css/?version=3.2">
+{% endblock %}
+{% block title %}Sandbox - {% endblock %}
 {% block content%}
+
+<div class="card">
+    <h3 class="m-2">SAND<b>BOX</b></h3>
+    <div class="card-header">
+        <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link leng_c" data-toggle="tab" href="#leng_c" role="tab">C</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link leng_cpp" data-toggle="tab" href="#leng_cpp" role="tab">C++</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active leng_py" data-toggle="tab" href="#leng_py" role="tab">Python</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link leng_java" data-toggle="tab" href="#leng_java" role="tab">Java</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content">
+            <div class="tab-pane" id="leng_c" role="tabpanel">
+                <img src="../static/img/shared/Work-In-Progress.png" alt="" style="height: auto; width:100%;">
+            </div>
+            <div class="tab-pane" id="leng_cpp" role="tabpanel">
+                <img src="../static/img/shared/Work-In-Progress.png" alt="" style="height: auto; width:100%;">
+            </div>
+            <div class="tab-pane active" id="leng_py" role="tabpanel">
+                <div class="container row m-0 p-0 ">
+                    <div class="col-md-3 py_menu" style="height: 100px;"></div>
+                    <div class="col py_container container row p-0 m-0 ">
+                        <div class="py_form col m-0">
+                            <div class="form-check m-2">
+                                <input class="form-check-input" type="checkbox" value=1 id="PW_w_LC" name="PW_w_LC"
+                                    checked>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Lower Case
+                                </label>
+                            </div>
+                            <div class="form-check m-2">
+                                <input class="form-check-input" type="checkbox" value=1 id="PW_w_UC" name="PW_w_UC"
+                                    checked>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Uper Case
+                                </label>
+                            </div>
+                            <div class="form-check m-2">
+                                <input class="form-check-input" type="checkbox" value=1 id="PW_w_NC" name="PW_w_NC"
+                                    checked>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Numeric
+                                </label>
+                            </div>
+                            <div class="form-check m-2">
+                                <input class="form-check-input" type="checkbox" value=1 id="PW_w_SC" name="PW_w_SC"
+                                    checked>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Simbols
+                                </label>
+                            </div>
+                            <div class="form-group m-2">
+                                <label for="passwordLen" class="col-sm-2 form-label">Length</label>
+                                <div class="col">
+                                    <input type="range" class="form-range" min="8" max="128" step="1" value="16"
+                                        id="passwordLen" name="passwordLen">
+                                </div>
+                            </div>
+                            <div class="form-group m-2">
+                                <button class="btn btn-primary send-it" id="getPyPassword" name="getPyPassword">Get
+                                    password</button>
+                                <button class="btn btn-secondary" id="sourceToggle" onclick="{showCode()}">
+                                    Show/Hide source</button>
+                            </div>
+                            <textarea class="m-2 mr-2 " id="pswdOutput" type="text" placeholder="password"
+                                readonly></textarea>
+                        </div>
+                    </div>
+                    <div class="collapse py_source col m-0" id="pysourcepass"
+                        style="background: #909090; max-width: 500px; transition: 0.525s; transition: 0.525s cubic-bezier(0.19, 0.9, 0.22, 1); ">
+                        <div class="codeheader" id="codeheader_py">Python > {{ py }}</div>
+                        <pre id="codebox" data-language="python">{{source_sauce}}</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="leng_java" role="tabpanel">
+                <img src="../static/img/shared/Work-In-Progress.png" alt="" style="height: auto; width:100%;">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function getSource() {
+        $.ajax({
+            url: 'sandbox/getSource',
+            type: 'POST',
+            data: JSON.stringify({
+            }),
+            success: function (outputSource) {
+                document.getElementById('codebox').innerHTML = outputSource
+            }
+        });
+    }
+</script>
+<script>
+    $('.send-it').click(function () {
+        $.ajax({
+            url: 'sandbox',
+            type: 'POST',
+            data: JSON.stringify({
+                L: $('#PW_w_LC').is(":checked") ? 1 : 0,
+                U: $('#PW_w_UC').is(":checked") ? 1 : 0,
+                N: $('#PW_w_NC').is(":checked") ? 1 : 0,
+                S: $('#PW_w_SC').is(":checked") ? 1 : 0,
+                pwl: $('#passwordLen').val()
+            }),
+            success: function (outputPassword) {
+                $('#pswdOutput').val(outputPassword);
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    function showCode() {
+        let scrTgl = document.getElementById('sourceToggle');
+        if (document.getElementById('pysourcepass').classList.contains("show")) {
+            document.getElementById('pysourcepass').classList.remove("show");
+        }
+        else {
+            getSource()
+            document.getElementById('pysourcepass').classList.add("show");
+            
+        }
+    }
+</script>
 
 {% endblock %}

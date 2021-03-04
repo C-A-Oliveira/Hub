@@ -1,18 +1,27 @@
 {% extends "base.html" %} {% block title %}Contact me - {% endblock %}
-{% block banner%}{% endblock%}
+
 {% block content%}
-<div class="container">
-  <h1 class="display-4">This is how it works:</h1>
-  <p class="lead my-3 mb-4">For you to know how get in touch with, you just need to do some hoverring around.</p>
-  <div class="p-4 rounded ts-box-animate mb-5">
+
+<form method="POST" class="needs-validation" novalidate>
+  <div class="form-group row mb-3">
+    <div class=" position-relative p-3">
+      <div class="onoffswitch position-absolute top-50 start-50 translate-middle">
+        <input type="checkbox" name="contactType" class="onoffswitch-checkbox col-sm-3" id="contactType" checked
+          onclick="{mano()}">
+        <label class="onoffswitch-label" for="contactType">
+          <span class="onoffswitch-inner"></span>
+          <span class="onoffswitch-switch"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="p-4 rounded ts-box-animate mb-4" id="container-pro"
+    style="display: ''; transition: 0.3s;  transition: 0.525s cubic-bezier(0.19, 0.9, 0.22, 1);  ">
     <div class="col-md-8 px-0 d-flex flex-column">
-      <h1 class="display-4 font-italic"><b class="font-weight-bold">PRO</b>FESSIONAL</h1>
-      <p class="lead my-3">If you'd like to speak with me formaly/professionally, click on the link bellow and you'll
-        redirected to my mailing service.</p>
-      <p>That's security purposes (as if I knew s*** on how make a secure site...)</p>
-      <a href="/contact/professional" class="" style="color: #343a40; letter-spacing: 2px; font-weight: 100;">
-        <p class="lead mb-0 nav-item">Go to \<b class="font-weight-bold">Professional</b>_Contact</p>
-      </a>
+      <p class="lead my-3">If you'd like to speak with me formaly/professionally, just fill the from bellow and my
+        mailing service will do it's magic.</p>
+      <p>That's security and privacy reasons (as if I knew s*** on how make a secure site... not yet at least... I'm
+        trying, Ok)</p>
     </div>
     <div class="ts-svg-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-envelope-fill"
@@ -22,16 +31,13 @@
       </svg>
     </div>
   </div>
-  <div class="p-4 rounded ts-box-animate mb-5">
+  <div class="p-4 rounded ts-box-animate mb-2" id="container-per"
+    style="display: none;  transition: 0.3s; transition: 0.525s cubic-bezier(0.19, 0.9, 0.22, 1);">
     <div class="col-md-8 px-0 d-flex flex-column">
-      <h1 class="display-4 font-italic"><b class="font-weight-bold">PER</b>SONAL</h1>
-      <p class="lead my-3">If you'd like to speak with me about anything else, click on the link bellow and you'll
-        redirected to another mailing service.</p>
+      <p class="lead my-3">If you'd like to speak with me about anything else, just fill the from bellow and my
+        mailing service will do it's magic... again.</p>
       <p>They don't have many difference from one another ... I just want it to be like this...
         don't complain...</p>
-      <a href="/contact/personal" class="" style="color: #343a40; letter-spacing: 2px; font-weight: 100;">
-        <p class="lead mb-0 nav-item">Go to \<b class="font-weight-bold">Personal</b>_Contact</p>
-      </a>
     </div>
     <div class="ts-svg-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-envelope"
@@ -41,5 +47,83 @@
       </svg>
     </div>
   </div>
-</div>
+  <hr class="mb-4" />
+  <div class="form-group row mb-3">
+    <label for="inputName" id="labelName" class="col-sm-2 col-form-label">Full name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputName" name="name" required>
+      <div class="invalid-feedback">
+        I bet you do have a name...
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label for="inputConpany" id="labelCompany" class="col-sm-2 col-form-label">Company name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputCompany" name="company">
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label for="inputEmail" id="labelEmail" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail" name="email" required>
+      <div class="invalid-feedback">
+        How will my amazing bot, Stuffy, get in touch w/o your e-mail?!
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label for="inputSubject" id="labelSubject" class="col-sm-2 col-form-label">Subject</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputSubject" name="subject">
+    </div>
+  </div>
+  <div class="mb-3">
+    <textarea class="form-control" id="message" name="message" placeholder="Send a message if you wish :]"></textarea>
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">Send it</button>
+    </div>
+  </div>
+</form>
+
+<script type="text/javascript">
+
+  function mano() {
+    let c_type = document.getElementById('contactType');
+    if (!c_type.checked) {
+      document.getElementById("inputCompany").parentElement.parentElement.style.display = 'none'
+      document.getElementById("labelSubject").innerHTML = "What you want to speak about?"
+      document.getElementById("container-per").style.display = ''
+      document.getElementById("container-pro").style.display = 'none'
+    }
+    else {
+      document.getElementById("inputCompany").parentElement.parentElement.style.display = 'flex'
+      document.getElementById("labelSubject").innerHTML = "Subject"
+      document.getElementById("container-per").style.display = 'none'
+      document.getElementById("container-pro").style.display = ''
+    }
+  }
+</script>
+<script> /// Modded from Bootstraps Documentation
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
 {% endblock %}

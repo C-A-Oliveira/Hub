@@ -1,0 +1,35 @@
+:root {
+  --BACK_COLOUR: #190a36;
+}
+
+body {
+  padding: 0;
+  margin: 20px;
+  background: var(--BACK_COLOUR);
+  position: absolute;
+  top: 0;
+  scroll-snap-type: x mandatory;
+  overflow-y: hidden;
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+}
+
+.page{ 
+  border-right: 1px solid white;
+  padding: 1rem;
+  min-width: 80vw;
+  height: 80vh;
+  scroll-snap-align: start;
+  text-align: center;
+  position: relative;
+}
+
+.title a{
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+}
+.title a:hover{
+  font-size: larger;
+}
