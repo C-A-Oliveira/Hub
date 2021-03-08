@@ -10,7 +10,7 @@
 {% block title %}Sandbox - {% endblock %}
 {% block content%}
 
-<div class="card">
+<div class="card m-0">
     <h3 class="m-2">SAND<b>BOX</b></h3>
     <div class="card-header">
         <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist">
@@ -38,58 +38,113 @@
             </div>
             <div class="tab-pane active" id="leng_py" role="tabpanel">
                 <div class="container row m-0 p-0 ">
-                    <div class="col-md-3 py_menu" style="height: 100px;"></div>
-                    <div class="col py_container container row p-0 m-0 ">
-                        <div class="py_form col m-0">
-                            <div class="form-check m-2">
-                                <input class="form-check-input" type="checkbox" value=1 id="PW_w_LC" name="PW_w_LC"
-                                    checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Lower Case
-                                </label>
+                    <!-- Python menu -->
+                    <div class="col-md-3 py_menu" style="color: #fff;">
+                        <ul>
+                            <li class="py_code_link">
+                                Password generator
+                            </li>
+                            <li class="py_code_link">
+                                Brazilian documents
+                                <ul>
+                                    <li>CPF</li>
+                                    <li>RG</li>
+                                    <li>CNPJ</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col py_container">
+                        <!-- Python password generator -->
+                        <div class="container row p-0 m-0 " id="password-generator-python">
+                            <div class="py_form col m-0">
+                                <div class="form-check m-2">
+                                    <input class="form-check-input" type="checkbox" value=1 id="PW_w_LC" name="PW_w_LC"
+                                        checked>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Lower Case
+                                    </label>
+                                </div>
+                                <div class="form-check m-2">
+                                    <input class="form-check-input" type="checkbox" value=1 id="PW_w_UC" name="PW_w_UC"
+                                        checked>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Uper Case
+                                    </label>
+                                </div>
+                                <div class="form-check m-2">
+                                    <input class="form-check-input" type="checkbox" value=1 id="PW_w_NC" name="PW_w_NC"
+                                        checked>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Numeric
+                                    </label>
+                                </div>
+                                <div class="form-check m-2">
+                                    <input class="form-check-input" type="checkbox" value=1 id="PW_w_SC" name="PW_w_SC"
+                                        checked>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Simbols
+                                    </label>
+                                </div>
+                                <div class="form-group m-2">
+                                    <label for="passwordLen" class="col-sm-2 form-label">Length</label>
+                                    <div class="col">
+                                        <input type="range" class="form-range" min="8" max="128" step="1" value="16"
+                                            id="passwordLen" name="passwordLen">
+                                    </div>
+                                </div>
+                                <div class="form-group m-2">
+                                    <button class="btn btn-primary send-it" id="getPyPassword" name="getPyPassword"
+                                        onclick="getPasswordGenPython()">Get
+                                        password</button>
+                                    <button class="btn btn-secondary" id="sourceToggle"
+                                        onclick="{getPasswordGenSourcePython()}">
+                                        Show/Hide source</button>
+                                </div>
+                                <textarea class="m-2 mr-2 " id="pswdOutput" type="text" placeholder="password"
+                                    readonly></textarea>
                             </div>
-                            <div class="form-check m-2">
-                                <input class="form-check-input" type="checkbox" value=1 id="PW_w_UC" name="PW_w_UC"
-                                    checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Uper Case
-                                </label>
+                            <div class="collapse py_source col m-0 p-2" id="passwordGenSourcePython">
+                                <pre class="m-0">
+                            <code>
+                                {{source_sauce}}
+                            </code>
+                        </pre>
                             </div>
-                            <div class="form-check m-2">
-                                <input class="form-check-input" type="checkbox" value=1 id="PW_w_NC" name="PW_w_NC"
-                                    checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Numeric
-                                </label>
-                            </div>
-                            <div class="form-check m-2">
-                                <input class="form-check-input" type="checkbox" value=1 id="PW_w_SC" name="PW_w_SC"
-                                    checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Simbols
-                                </label>
-                            </div>
-                            <div class="form-group m-2">
-                                <label for="passwordLen" class="col-sm-2 form-label">Length</label>
-                                <div class="col">
-                                    <input type="range" class="form-range" min="8" max="128" step="1" value="16"
-                                        id="passwordLen" name="passwordLen">
+                        </div>
+                        <!-- Brazilian documents generator and validator -->
+                        <div class="container row p-0 m-0 " id="cpf-python ">
+                            <div class="py_form col m-0">
+                                <div class="form-group m-2">
+                                    <label for="outputCPF" id="generateCPF">New CPF</label>
+                                    <input type="text" class="form-control" placeholder="Output CPF code."
+                                        id="outputCPF" name="cpf-out">
+
+                                    <button class="btn btn-primary" id="getNewCPF" name="getNewCPF"
+                                        onclick="getNewCPF_python()">New
+                                        CPF</button>
+                                    <input class="form-check-input" type="checkbox" value=1
+                                        id="formatedCPF" name="formatedCPF" checked>
+                                    <label class="form-check-label">
+                                        Format it
+                                    </label>
+                                </div>
+                                <div class="form-group m-2">
+                                    <label for="InputCPF" id="validateCPF">Validate CPF</label>
+                                    <input type="text" class="form-control" placeholder="Enter a code to validate."
+                                        id="InputCPF" name="cpf">
+                                    <button class="btn btn-primary" id="checkCPF" name="checkCPF"
+                                        onclick="checkDocumentCPF_python()">Validate
+                                        CPF</button>
+                                    <button class="btn btn-secondary" id="sourceToggle"
+                                        onclick="{getPasswordGenSourcePython()}">
+                                        Show/Hide source</button>
                                 </div>
                             </div>
-                            <div class="form-group m-2">
-                                <button class="btn btn-primary send-it" id="getPyPassword" name="getPyPassword">Get
-                                    password</button>
-                                <button class="btn btn-secondary" id="sourceToggle" onclick="{showCode()}">
-                                    Show/Hide source</button>
+                            <div class="collapse py_source col m-0 p-2" id="DocumentCPFSourcePython">
+                                <pre class="m-0"><code>{{source_sauce}}</code></pre>
                             </div>
-                            <textarea class="m-2 mr-2 " id="pswdOutput" type="text" placeholder="password"
-                                readonly></textarea>
                         </div>
-                    </div>
-                    <div class="collapse py_source col m-0" id="pysourcepass"
-                        style="background: #909090; max-width: 500px; transition: 0.525s; transition: 0.525s cubic-bezier(0.19, 0.9, 0.22, 1); ">
-                        <div class="codeheader" id="codeheader_py">Python > {{ py }}</div>
-                        <pre id="codebox" data-language="python">{{source_sauce}}</pre>
                     </div>
                 </div>
             </div>
@@ -99,49 +154,6 @@
         </div>
     </div>
 </div>
-<script>
-    function getSource() {
-        $.ajax({
-            url: 'sandbox/getSource',
-            type: 'POST',
-            data: JSON.stringify({
-            }),
-            success: function (outputSource) {
-                document.getElementById('codebox').innerHTML = outputSource
-            }
-        });
-    }
-</script>
-<script>
-    $('.send-it').click(function () {
-        $.ajax({
-            url: 'sandbox',
-            type: 'POST',
-            data: JSON.stringify({
-                L: $('#PW_w_LC').is(":checked") ? 1 : 0,
-                U: $('#PW_w_UC').is(":checked") ? 1 : 0,
-                N: $('#PW_w_NC').is(":checked") ? 1 : 0,
-                S: $('#PW_w_SC').is(":checked") ? 1 : 0,
-                pwl: $('#passwordLen').val()
-            }),
-            success: function (outputPassword) {
-                $('#pswdOutput').val(outputPassword);
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    function showCode() {
-        let scrTgl = document.getElementById('sourceToggle');
-        if (document.getElementById('pysourcepass').classList.contains("show")) {
-            document.getElementById('pysourcepass').classList.remove("show");
-        }
-        else {
-            getSource()
-            document.getElementById('pysourcepass').classList.add("show");
-            
-        }
-    }
-</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/sandbox.js') }}"></script>
 
 {% endblock %}

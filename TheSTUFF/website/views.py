@@ -28,40 +28,6 @@ def projects():
     return wip()
     #return render_template("projects.html")
 
-@views.route('/sandbox' , methods=["GET", "POST"])
-def sandbox():    
-    # The POST/GET request needs to tell:
-    # > what the language of code is    -       ()
-    # > what project itself is ...      -       ()
-    # > what are the args to be used    -       (DONE)
-    # After that that informations is sent to de <mapper> so it can decide where it goes.
-    # If I did that here on the 'views' this shit would be impossibly tedeous and difficult
-    # to debug... Don't @ me
-    ## Maybe i could call the damn method/funtion/code dictly... IDNC F-it 
-    #return wip()
-    if request.method == "POST":
-        #print(request.form.to_dict())
-        #post_list = list(request.form.to_dict().values())
-        
-        post_list = list(request.get_json(force=True).values())
-        print(post_list)
-        return mapper.do_shit(post_list)
-    else:
-        return render_template("sandbox.html")
-
-@views.route('/sandbox/getSource' , methods=["POST"])
-def getSource():    
-    # The POST/GET request needs to tell:
-    # > what the language of code is    -       ()
-    # > what project itself is ...      -       ()
-    # > what are the args to be used    -       (DONE)
-    # After that that informations is sent to de <mapper> so it can decide where it goes.
-    # If I did that here on the 'views' this shit would be impossibly tedeous and difficult
-    # to debug... Don't @ me
-    ## Maybe i could call the damn method/funtion/code dictly... IDNC F-it 
-    #return wip()
-    return get_file_from('Hub/master/TheSTUFF/Stuffy/displayProjects/py', 'randPassGen.py')
-
 @views.route('/about')
 def about():
     return render_template("about-cesar.html")
@@ -80,6 +46,30 @@ def contact():
         # add the person a list of some sort...
         # add_to_reply(name, company, email, subject, message)
     return render_template("contact.html")
+
+@views.route('/sandbox' , methods=["GET", "POST"])
+def sandbox():    
+    if request.method == "POST":
+        #print(request.form.to_dict())
+        #post_list = list(request.form.to_dict().values())
+        post_list = request.get_json(force=True)
+        print(post_list)
+        return mapper.do_shit(post_list)
+    else:
+        return render_template("sandbox.html")
+
+@views.route('/sandbox/python/getPasswordGenSource' , methods=["POST"])
+def getSource():    
+    # The POST/GET request needs to tell:
+    # > what the language of code is    -       ()
+    # > what project itself is ...      -       ()
+    # > what are the args to be used    -       (DONE)
+    # After that that informations is sent to de <mapper> so it can decide where it goes.
+    # If I did that here on the 'views' this shit would be impossibly tedeous and difficult
+    # to debug... Don't @ me
+    ## Maybe i could call the damn method/funtion/code dictly... IDNC F-it 
+    #return wip()
+    return get_file_from('Hub/master/TheSTUFF/Stuffy/displayProjects/py', 'randPassGen.py')
 
 @views.route('/wip')
 def wip():
