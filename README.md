@@ -1,4 +1,4 @@
-# Hub
+# Hub (The STUFF & Bot Stuffy)
 I'm trying to create something... Right now it's just a messy-ish sandbox for me, so don't expect much from me
 
 So, if you want to play with project, you'll need to do some prep work.
