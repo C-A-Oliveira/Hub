@@ -43,6 +43,7 @@ function getPasswordGenSourcePython() {
 }
 
 /* Documentos pessoais */
+/* CPF */
 function checkDocumentCPF_python() {
     if (document.getElementById('DocumentCPFSourcePython').classList.contains("show")) {
         document.getElementById('DocumentCPFSourcePython').classList.remove("show");
@@ -60,20 +61,111 @@ function checkDocumentCPF_python() {
     }
 }
 
-function getNewCPF_python(){
+function getNewCPF_python() {
     let data = JSON.stringify({
         type: 'doc_cpf',
-        action: 'new',        
+        action: 'new',
         formated: $('#formatedCPF').is(":checked") ? true : false,
     })
-    getPythonOutput(data,'#outputCPF')
+    getPythonOutput(data, '#outputCPF')
 }
 
-function checkDocumentCPF_python(){
+function checkDocumentCPF_python() {
+    $.ajax({
+        url: 'sandbox',
+        type: 'POST',
+        data: JSON.stringify({
+            type: 'doc_cpf',
+            action: 'check',
+            input: $('#InputCPF').val()
+        }),
+        success: function (output) {
+            let tag = document.getElementById("ValidationOutputCPF")
+            tag.innerHTML = output;
+            if(output == 'All OK') tag.style.color="green";
+            else if(output == 'Invalid') tag.style.color="orange";
+            else tag.style.color="yellow";
+        }
+    });
+}
+
+function getCPFSourcePython() {
+    let scrTgl = document.getElementById('sourceToggle');
+    if (document.getElementById('DocumentCPFSourcePython').classList.contains("show")) {
+        document.getElementById('DocumentCPFSourcePython').classList.remove("show");
+    }
+    else {
+        $.ajax({
+            url: 'sandbox/python/getCPFSource',
+            type: 'POST',
+            success: function (outputSource) {
+                document.getElementById('DocumentCPFSourcePython').innerHTML = "<pre>" + outputSource + "</pre>"
+            }
+        });
+        document.getElementById('DocumentCPFSourcePython').classList.add("show");
+
+    }
+}
+/* RG */
+function checkDocumentRG_python() {
+    if (document.getElementById('DocumentRGSourcePython').classList.contains("show")) {
+        document.getElementById('DocumentRGSourcePython').classList.remove("show");
+    }
+    else {
+        $.ajax({
+            url: 'sandbox/python/getDocumentRGSource',
+            type: 'POST',
+            success: function (outputSource) {
+                document.getElementById('DocumentRGSourcePython').innerHTML = "<pre>" + outputSource + "</pre>"
+            }
+        });
+        document.getElementById('DocumentRGSourcePython').classList.add("show");
+
+    }
+}
+
+function getNewRG_python() {
     let data = JSON.stringify({
-        type: 'doc_cpf',
-        action: 'check',        
-        input: $('#InputCPF').val()
+        type: 'doc_rg',
+        action: 'new',
+        formated: $('#formatedRG').is(":checked") ? true : false,
     })
-    getPythonOutput(data,'#outputCPF')
+    getPythonOutput(data, '#outputRG')
+}
+
+function checkDocumentRG_python() {
+    $.ajax({
+        url: 'sandbox',
+        type: 'POST',
+        data: JSON.stringify({
+            type: 'doc_rg',
+            action: 'check',
+            input: $('#InputRG').val()
+        }),
+        success: function (output) {
+            let tag = document.getElementById("ValidationOutputRG")
+            tag.innerHTML = output;
+            if(output == 'All OK') tag.style.color="green";
+            else if(output == 'Invalid') tag.style.color="orange";
+            else tag.style.color="yellow";
+        }
+    });
+}
+
+function getRGSourcePython() {
+    let scrTgl = document.getElementById('sourceToggle');
+    if (document.getElementById('DocumentRGSourcePython').classList.contains("show")) {
+        document.getElementById('DocumentRGSourcePython').classList.remove("show");
+    }
+    else {
+        $.ajax({
+            url: 'sandbox/python/getRGSource',
+            type: 'POST',
+            success: function (outputSource) {
+                document.getElementById('DocumentRGSourcePython').innerHTML = "<pre>" + outputSource + "</pre>"
+            }
+        });
+        document.getElementById('DocumentRGSourcePython').classList.add("show");
+
+    }
 }

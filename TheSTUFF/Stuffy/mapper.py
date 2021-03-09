@@ -1,4 +1,4 @@
-from .displayProjects.py import randPassGen, cpf
+from .displayProjects.py import randPassGen, cpf, rg
 
 def do_shit(some_shit):
     if some_shit['type'] == 'password_generator':
@@ -16,10 +16,17 @@ def do_shit(some_shit):
             else:
                 return cpf.newCPF()
         elif some_shit['action'] == 'check':
-            if some_shit['input'] == '': return
-            if cpf.validaCPF(some_shit['input']):
-                return 'OK'
+            #if some_shit['input'] == '': return
+            return cpf.validaCPF(some_shit['input'])
+    elif some_shit['type'] == 'doc_rg':
+        if some_shit['action'] == 'new':
+            if some_shit['formated']: 
+                return rg.newRG_formatado()
             else:
-                return 'Não'
+                return rg.newRG()
+        elif some_shit['action'] == 'check':
+            #if some_shit['input'] == '': return
+            return rg.validaRG(some_shit['input'])
+                
     else:
         return "error"

@@ -59,7 +59,7 @@ def sandbox():
         return render_template("sandbox.html")
 
 @views.route('/sandbox/python/getPasswordGenSource' , methods=["POST"])
-def getSource():    
+def getPasswordGenSource():    
     # The POST/GET request needs to tell:
     # > what the language of code is    -       ()
     # > what project itself is ...      -       ()
@@ -70,6 +70,14 @@ def getSource():
     ## Maybe i could call the damn method/funtion/code dictly... IDNC F-it 
     #return wip()
     return get_file_from('Hub/master/TheSTUFF/Stuffy/displayProjects/py', 'randPassGen.py')
+
+@views.route('/sandbox/python/getCPFSource' , methods=["POST"])
+def getCPFSource():    
+    return get_file_from('Hub/master/TheSTUFF/Stuffy/displayProjects/py', 'cpf.py')
+
+@views.route('/sandbox/python/getRGSource' , methods=["POST"])
+def getRGSource():    
+    return get_file_from('Hub/master/TheSTUFF/Stuffy/displayProjects/py', 'rg.py')
 
 @views.route('/wip')
 def wip():

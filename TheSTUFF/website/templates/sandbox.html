@@ -112,7 +112,9 @@
                         </pre>
                             </div>
                         </div>
+                        <hr>
                         <!-- Brazilian documents generator and validator -->
+                        <!-- CPF -->
                         <div class="container row p-0 m-0 " id="cpf-python ">
                             <div class="py_form col m-0">
                                 <div class="form-group m-2">
@@ -123,25 +125,66 @@
                                     <button class="btn btn-primary" id="getNewCPF" name="getNewCPF"
                                         onclick="getNewCPF_python()">New
                                         CPF</button>
-                                    <input class="form-check-input" type="checkbox" value=1
-                                        id="formatedCPF" name="formatedCPF" checked>
+                                </div>
+                                <div class="form-group m-2">
+                                    <input class="form-check-input" type="checkbox" value=1 id="formatedCPF"
+                                        name="formatedCPF" checked>
+                                    <span class="check"></span>
                                     <label class="form-check-label">
                                         Format it
                                     </label>
                                 </div>
                                 <div class="form-group m-2">
                                     <label for="InputCPF" id="validateCPF">Validate CPF</label>
+                                    <label id="ValidationOutputCPF"></label>
                                     <input type="text" class="form-control" placeholder="Enter a code to validate."
                                         id="InputCPF" name="cpf">
                                     <button class="btn btn-primary" id="checkCPF" name="checkCPF"
                                         onclick="checkDocumentCPF_python()">Validate
                                         CPF</button>
                                     <button class="btn btn-secondary" id="sourceToggle"
-                                        onclick="{getPasswordGenSourcePython()}">
+                                        onclick="{getCPFSourcePython()}">
                                         Show/Hide source</button>
                                 </div>
                             </div>
                             <div class="collapse py_source col m-0 p-2" id="DocumentCPFSourcePython">
+                                <pre class="m-0"><code>{{source_sauce}}</code></pre>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- RG -->
+                        <div class="container row p-0 m-0 " id="rg-python ">
+                            <div class="py_form col m-0">
+                                <div class="form-group m-2">
+                                    <label for="outputCRG" id="generateRG">New RG</label>
+                                    <input type="text" class="form-control" placeholder="Output RG code." id="outputRG"
+                                        name="rg-out">
+
+                                    <button class="btn btn-primary" id="getNewRG" name="getNewRG"
+                                        onclick="getNewRG_python()">New
+                                        RG</button>
+                                </div>
+                                <div class="form-group m-2">
+                                    <input class="form-check-input" type="checkbox" value=1 id="formatedRG"
+                                        name="formatedRG" checked>
+                                    <span class="check"></span>
+                                    <label class="form-check-label">
+                                        Format it
+                                    </label>
+                                </div>
+                                <div class="form-group m-2">
+                                    <label for="InputRG" id="validateRG">Validate RG</label>
+                                    <label id="ValidationOutputRG"></label>
+                                    <input type="text" class="form-control" placeholder="Enter a code to validate."
+                                        id="InputRG" name="rg">
+                                    <button class="btn btn-primary" id="checkRG" name="checkRG"
+                                        onclick="checkDocumentRG_python()">Validate
+                                        RG</button>
+                                    <button class="btn btn-secondary" id="sourceToggle" onclick="{getRGSourcePython()}">
+                                        Show/Hide source</button>
+                                </div>
+                            </div>
+                            <div class="collapse py_source col m-0 p-2" id="DocumentRGSourcePython">
                                 <pre class="m-0"><code>{{source_sauce}}</code></pre>
                             </div>
                         </div>
